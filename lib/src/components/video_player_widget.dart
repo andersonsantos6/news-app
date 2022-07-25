@@ -18,12 +18,13 @@ class VideoPlayerWidget extends StatefulWidget {
 class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
   @override
   Widget build(BuildContext context) {
-    var memoryList = Provider.of<NewsList>(context, listen: false)
+    final String videoLink = Provider.of<NewsList>(context, listen: false)
         .searchLink(widget.newsModel.videoLink.toString());
+
     YoutubePlayerController _controller = YoutubePlayerController(
       initialVideoId:
-          YoutubePlayerController.convertUrlToId(memoryList).toString(),
-      params: YoutubePlayerParams(
+          YoutubePlayerController.convertUrlToId(videoLink).toString(),
+      params: const YoutubePlayerParams(
         showControls: true,
         showFullscreenButton: true,
       ),
@@ -33,8 +34,8 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Confira o vídeo abaixo:'),
-          SizedBox(
+          const Text('Confira o vídeo abaixo:'),
+          const SizedBox(
             height: 10,
           ),
           YoutubePlayerIFrame(

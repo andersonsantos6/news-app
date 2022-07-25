@@ -4,7 +4,6 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:interior_baiano/src/components/appBar.dart';
 import 'package:interior_baiano/src/model/news_model.dart';
 import 'package:provider/provider.dart';
-import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 import '../components/video_player_widget.dart';
 import '../controller/web_radio_controller.dart';
@@ -30,7 +29,7 @@ class _NewsPageState extends State<NewsPage> {
             child: CustomAppBar(webRadioController: webRadioController)),
         body: ListView(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Container(
@@ -52,13 +51,11 @@ class _NewsPageState extends State<NewsPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    newsArguments.title,
-                    style: const TextStyle(
+                  Text(newsArguments.title,
+                      style: const TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.bold,
-                        fontFamily: 'Oswald-VariableFont_wght'),
-                  ),
+                      )),
                   const SizedBox(
                     height: 5,
                   ),
@@ -89,11 +86,9 @@ class _NewsPageState extends State<NewsPage> {
                 ),
               ),
             ),
-            newsArguments.videoLink != null
-                ? VideoPlayerWidget(
-                    newsModel: newsArguments,
-                  )
-                : Container()
+            newsArguments.videoLink == null
+                ? Container()
+                : VideoPlayerWidget(newsModel: newsArguments)
           ],
         ),
       ),

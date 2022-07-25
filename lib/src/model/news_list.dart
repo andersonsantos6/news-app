@@ -10,7 +10,7 @@ class NewsList with ChangeNotifier {
     return [..._newsList];
   }
 
-  final _url = '';
+  final _url = 'https://interior-baiano-default-rtdb.firebaseio.com/news';
   Future loadNews() async {
     var response = await http.get(Uri.parse('$_url.json'));
     if (response == 'null') return;
@@ -55,11 +55,11 @@ class NewsList with ChangeNotifier {
   }
 
   searchLink(String videolink) {
-    for (int i = 0; i < _newsList.length; i++) {
-      if (_newsList[i].videoLink == videolink) {
-        return _newsList[i].videoLink;
+    for (var i in newsList) {
+      if (i.videoLink == videolink) {
+        return i.videoLink;
       }
-      notifyListeners();
     }
+    notifyListeners();
   }
 }

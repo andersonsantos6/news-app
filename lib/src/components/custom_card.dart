@@ -35,7 +35,7 @@ class _CustomCardState extends State<CustomCard> {
         child: Card(
           elevation: 6,
           child: Container(
-            height: MediaQuery.of(context).size.height * 0.20,
+            height: MediaQuery.of(context).size.height * 0.22,
             child: Padding(
               padding: const EdgeInsets.all(10),
               child: Row(children: [
@@ -61,7 +61,7 @@ class _CustomCardState extends State<CustomCard> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           widget.newsList[widget.index].subject == null
-                              ? Icon(Icons.error_outline)
+                              ? const Icon(Icons.error_outline)
                               : Text(
                                   widget.newsList[widget.index].subject
                                       .toUpperCase(),
@@ -74,7 +74,7 @@ class _CustomCardState extends State<CustomCard> {
                                   widget.newsList[widget.index].dateTime
                                           .length !=
                                       10
-                              ? Icon(Icons.error_outline)
+                              ? const Icon(Icons.error_outline)
                               : Text(
                                   DateTime.parse(
                                     widget.newsList[widget.index].dateTime,
@@ -97,9 +97,10 @@ class _CustomCardState extends State<CustomCard> {
                                         .substring(0, 50)
                                     : widget.newsList[widget.index].title,
                                 style: const TextStyle(
-                                    fontSize: 18,
-                                    color: Color.fromARGB(255, 191, 6, 6),
-                                    fontFamily: 'SecularOne-Regular'),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                  color: Color.fromARGB(255, 191, 6, 6),
+                                ),
                               ),
                             ),
                           )
@@ -112,16 +113,18 @@ class _CustomCardState extends State<CustomCard> {
                         child: Container(
                           alignment: Alignment.topLeft,
                           child: Text(
-                            widget.newsList[widget.index].body.substring(
-                                0,
-                                widget.newsList[widget.index].body.length > 80
-                                    ? 80
-                                    : widget
-                                        .newsList[widget.index].body.length),
-                            style: const TextStyle(
+                              widget.newsList[widget.index].body.substring(
+                                  0,
+                                  widget.newsList[widget.index].body.length > 80
+                                      ? 80
+                                      : widget
+                                          .newsList[widget.index].body.length),
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(
                                 color: Colors.grey,
-                                fontFamily: 'Oswald-VariableFont_wght'),
-                          ),
+                                fontFamily: 'Lato-Regular',
+                              )),
                         ),
                       ),
                     ]),

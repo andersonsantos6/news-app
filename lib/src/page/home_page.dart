@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:interior_baiano/src/components/circle_widgets.dart';
 import 'package:interior_baiano/src/components/custom_card.dart';
 import 'package:interior_baiano/src/model/news_list.dart';
-import 'package:interior_baiano/src/model/news_model.dart';
 import 'package:interior_baiano/src/controller/web_radio_controller.dart';
 import 'package:provider/provider.dart';
 
@@ -31,30 +30,31 @@ class _HomePageState extends State<HomePage> {
         appBar: PreferredSize(
             preferredSize: const Size.fromHeight(50),
             child: CustomAppBar(webRadioController: webRadioController)),
-        drawer: Drawer(),
+        drawer: const Drawer(),
         backgroundColor: Colors.white,
         body: newsList.isEmpty
             ? Center(
                 child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const CircularProgressIndicator(
-                    color: Colors.red,
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  const Text(
-                    'Carregando Notícias...',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.grey),
-                  )
-                ],
-              ))
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const CircularProgressIndicator(
+                      color: Colors.red,
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const Text(
+                      'Carregando Notícias...',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.grey),
+                    )
+                  ],
+                ),
+              )
             : Column(
                 children: [
-                  Story(),
-                  Divider(),
+                  const Story(),
+                  const Divider(),
                   Expanded(
                     child: ListView.builder(
                       itemCount: newsList.length,
